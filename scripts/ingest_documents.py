@@ -1,7 +1,10 @@
 import os
+import sys
 import logging
 import pickle
 import warnings
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 os.environ["HF_HUB_DISABLE_IMPLICIT_TOKEN"] = "1"
 logging.getLogger("sentence_transformers").setLevel(logging.ERROR)

@@ -6,11 +6,14 @@ from app.services.chat_service import ChatService
 with open("vector_store.pkl", "rb") as f:
     vector_store = pickle.load(f)
 
-chat_service = ChatService(vector_store)
+chat_service = ChatService(retriever=None)
 
 router = APIRouter()
 
 @router.post("/chat")
 def chat(request: ChatRequest):
-    response = chat_service.chat(request.message)
+    response = chat_service.chat(
+        request.session_id, 
+        request.message
+    )
     return response

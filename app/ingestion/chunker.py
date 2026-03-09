@@ -1,10 +1,6 @@
-def chunk_text(text, chunk_size=500, overlap=100):
-    chunks = []
-    start = 0
+import re
 
-    while start < len(text):
-        end = start + chunk_size
-        chunk = text[start:end]
-        chunks.append(chunk)
-        start += chunk_size - overlap
+def chunk_text(text: str) -> list[str]:
+    parts = re.split(r'(?=Điều \d+\.)', text)
+    chunks = [p.strip() for p in parts if p.strip()]
     return chunks
